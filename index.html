@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Bitcoin | Bitcoin Cash</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=0.5, maximum-scale=1.5, width=device-width">
+
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC2ElEQVR4nHWTP2hddRzFz/n+7p/3bl5SX5PX9KWl6iCCiAoKpUIKkg4Kzg4apIM4pK0dHAQ7xI5OShoR7eCiuJeCUjLFpQ5upaCkIrQkNUlbkry+P/fe3/c4BDEOPdNZPtM5HwKABJIQAAyXjr2VpPogOmbdcRiABcO2GX6pol9tnr//80GG/xYtd1qVZVfMcDYQiBEIARiMpGBglhF1BCT/Lt0rL/KTB3sSSC3C0OkUIyY38lY41d/xmAWEKqJP6o9gfKV2CFINMjQnzEY9/3VH1ZkjW1t942V4X+nXeSucGuzEYVEwSLoI4KohvB8d21lCNjJLIdhgx8u8ZSdbMfmKl+EcLM/MZQlXqkq1ADQK9vs9zYfE19Y279+ZbE2nR8fSZ0cxfpFkNleWcgrIM4ZRrTMmxwUjlAQGo/7cfFA+X7y0/lPeOXznuanup0/l4RIX7t0y4bNgoAAKAA3aZ6nTVSVGF6NzZqqdXR/e6r5x9+5uCMEWRb2jRSSVMBUFNwNAsCpFUqeNYDsKcAEgCivsVTnfPvHxvUGt+MLO0F/GM08nRXfjeln6fGIkAdQCCLYNByMIPXcQrwOAnMePtpO1Ya/6q7c9PVmc3/ixKrWVJTBp/zcm6FEgIEAgrKxkecrXet+c6IaAhy4UAq6NL/y9uffl9ItpiokqwhMDBD0yiatpRkFwAIJRct30varKFjZ+s1F5rLiw/mH/SvfdLA3XYGxEh2cZIXGVg+WZuTzhyqhUFKFmYUn/sZ/LMvyeMLldVvVsrHUTxtvNBsf6Q7kRytP9GQkAj5dmvi8m7L3BrpckMgBVox3SwcP6EolmSHgk1ngzBByvo6rmeMj7u/7D2Efr89QibLPTKQ4xXclbdnKw6w4ABCSABLzRtGQ0dLjDm4f+f+X/ZPp8crwabyyZ4WwwoCqFKIAAHEAzf4JMT9LZhdkYMQUAIWDbiNXK9W3z3MaNg8w/IIiUrz68FYEAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+
+    <!-- javascript -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <!-- css -->
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="table-title">
+        <center>
+            <h3>
+
+                <div id="page">
+
+                    <div class="menu">
+                        <button class="btn" type="button" id="modal_open">about</button>
+                    </div>
+
+                </div>
+                <!-- end #page -->
+
+                <div class="modal-overlay" id="modal_window" aria-hidden="true" role="dialog" aria-labelledby="modal_title">
+                    <div class="modal-content" id="modal_holder" role="document">
+                        <!-- content start -->
+                        <a>On August 1st, 2017 bitcoin will split into two currencies. This website provides data for both of them.<br><br>more info:<br><br>Bitcoin: <a href="https://bitcoin.org/">https://bitcoin.org/</a><br>Bitcoin Cash: <a href="https://www.bitcoincash.org/">https://bitcoincash.org/</a><br><br>api sources:<br><br><a href="https://coinmarketcap.com/api/">https://coinmarketcap.com/api/</a><br><a href="https://blockchain.info/api/">https://blockchain.info/api/</a><br></a>
+                        <!-- content end -->
+                        <button class="btn-close" id="modal_close" type="button" aria-label="close">&times;</button>
+                    </div>
+                </div>
+                <!-- end .modal-overlay -->
+
+                <script type="text/javascript">
+                    // modal window
+                    (function() {
+
+                        'use strict';
+
+                        // Helper function to place modal window as the first child of the #page node. DOM must be loaded.
+                        function swap() {
+                            var body = document.body;
+                            var m = document.getElementById('modal_window');
+                            body.insertBefore(m, body.firstChild);
+                        }
+                        swap();
+
+                        // List out the vars.
+                        var mOverlay = getId('modal_window'),
+                            mOpen = getId('modal_open'), // this is just watching a single button
+                            mClose = getId('modal_close'),
+                            modal = getId('modal_holder'),
+                            modalOpen = false,
+                            lastFocus,
+                            i;
+
+
+                        // Let's cut down on what we need to type to get an ID.
+                        function getId(id) {
+                            return document.getElementById(id);
+                        }
+
+
+                        // Let's open the modal.
+                        function modalShow() {
+                            lastFocus = document.activeElement;
+                            mOverlay.setAttribute('aria-hidden', 'false');
+                            modalOpen = true;
+                            modal.setAttribute('tabindex', '0');
+                            modal.focus();
+                        }
+
+
+                        // Binds to both the button click and the escape key to close the modal window
+                        function modalClose(event) {
+                            if (modalOpen && (!event.keyCode || event.keyCode === 27)) {
+                                mOverlay.setAttribute('aria-hidden', 'true');
+                                modal.setAttribute('tabindex', '-1');
+                                modalOpen = false;
+                                lastFocus.focus();
+                            }
+                        }
+
+
+                        // Restrict focus to the modal window when it's open.
+                        function focusRestrict(event) {
+                            if (modalOpen && !modal.contains(event.target)) {
+                                event.stopPropagation();
+                                modal.focus();
+                            }
+                        }
+
+
+                        // Close modal window by clicking on the overlay
+                        mOverlay.addEventListener('click', function(e) {
+                            if (e.target == modal.parentNode) {
+                                modalClose(e);
+                            }
+                        }, false);
+
+
+                        mOpen.addEventListener('click', modalShow);
+
+                        mClose.addEventListener('click', modalClose);
+
+                        document.addEventListener('keydown', modalClose);
+
+                        // restrict tab focus on elements only inside modal window
+                        // Seems like a heavy-handed approach and a problem for DOM elements added later.
+                        var allNodes = document.querySelectorAll("*");
+                        for (i = 0; i < allNodes.length; i++) {
+                            allNodes.item(i).addEventListener('focus', focusRestrict);
+                        }
+
+                    })();
+                </script>
+
+                <br> Total Market Cap of Cryptocurrencies: <br> <br>
+
+                <a id="totalCap"></a>
+
+            </h3>
+        </center>
+    </div>
+
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-center"> <br> Metric</th>
+                <th class="text-center"><img src="data:image/png;base64,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" alt="bitcoin_icon"> <br> Bitcoin</th>
+                <th class="text-center"><img src="data:image/png;base64,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" alt="bitcoin_cash_icon"> <br> Bitcoin Cash </th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-right">Price</td>
+                <td class="text-center">
+
+                    <a id="bitcoinPrice"></a>
+
+                    <span class="red"></span>
+                    <span class="green"></span>
+
+                </td>
+                <td class="text-center">
+
+                    <a id="bccPrice"></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Market Cap</td>
+                <td class="text-center">
+
+                    <a id="bitcoinMarketCap"></a>
+
+                </td>
+                <td class="text-center">
+
+                    <a id="bccMarketCap"></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Trading Volume (24h)</td>
+                <td class="text-center">
+
+                    <a id="bitcoinVol"></a>
+
+                </td>
+                <td class="text-center">
+
+                    <a id="bccVol"></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Transactions (24h)</td>
+                <td class="text-center">
+
+                    <a id="bitcoinTx"></a>
+
+                </td>
+                <td class="text-center">
+
+                    <a>not available yet</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Market Share</td>
+                <td class="text-center">
+
+                    <a id="bitcoinMarketShare"></a>
+
+                </td>
+                <td class="text-center">
+
+                    <a id="bccMarketShare"></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Price Change (24h)</td>
+                <td class="text-center">
+
+                    <a id="bitcoinChange"></a>
+
+                </td>
+                <td class="text-center">
+
+                    <a id="bccChange"></a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <center>
+        <a>
+            <font size="1" color="white" face="verdana">Data is automatically updated.</font>
+        </a>
+    </center>
+
+    <br>
+    <br>
+
+    <div class="table-title">
+        <h3>
+            <center><a>Market Share</a></center>
+        </h3>
+    </div>
+
+    <canvas id="myChart" height="80"></canvas>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+  <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1101_RC02/embed_loader.js"></script>
+  <script type="text/javascript">
+    trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"bitcoin","geo":"","time":"now 7-d"},{"keyword":"bitcoin cash","geo":"","time":"now 7-d"}],"category":0,"property":""}, {"exploreQuery":"date=now 7-d&q=bitcoin,bitcoin%20cash","guestPath":"https://trends.google.com:443/trends/embed/"});
+  </script>
+
+
+</body>
+
+</html>
