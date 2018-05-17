@@ -400,7 +400,6 @@
             Chart.defaults.global.defaultFontFamily = "Verdana";
 
             var ctx = document.getElementById('myChart').getContext('2d');
-            $('#myChart').css('background-color', '#222428');
 
             chart = new Chart(ctx, {
 
