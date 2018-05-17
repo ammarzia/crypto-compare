@@ -4,6 +4,7 @@
      background: #222428;
      font-family: "Oswald", sans-serif;
 }
+
  div.table-title {
      display: block;
      margin: auto;
@@ -11,6 +12,7 @@
      padding:5px;
      width: 100%;
 }
+
  .table-title h3 {
      color: #fafafa;
      font-size: 30px;
@@ -19,19 +21,23 @@
      font-family: "Roboto", helvetica, arial, sans-serif;
      text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
      text-transform:uppercase;
+     width: 100%;
 }
+
+div.table {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
 /*** Table Styles **/
  .table-fill {
-     background: white;
-     border-radius:3px;
-     border-collapse: collapse;
-     height: 320px;
-     margin: auto;
-     max-width: 1075px;
-     padding:5px;
-     width: 100%;
-     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-     animation: float 5s infinite;
+    background: white;
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 60%;
+    margin: auto;
+    white-space: nowrap;
 }
  th {
      color:#D5DDE5;
@@ -150,7 +156,7 @@
      position: relative;
      //transform: scale(.8);
      //transition: transform .3s;
-     width: 80%;
+     width: 50%;
      text-align: center;
 }
  .modal-overlay[aria-hidden="false"] .modal-content {
