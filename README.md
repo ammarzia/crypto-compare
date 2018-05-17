@@ -1,6 +1,4 @@
 # crypto-compare
-📈 Compare bitcoin and bitcoin cash markets:
+📈 Compare bitcoin and bitcoin cash markets: https://ammarzia.github.io/crypto-compare/
 
-https://ammarzia.github.io/crypto-compare/
-
-![Alt Text](https://i.imgur.com/vTQHZD9.png)
+<a href="https://ammarzia.github.io/crypto-compare/"><img src="https://i.imgur.com/vTQHZD9.png"/></a>
