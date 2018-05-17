@@ -3,4 +3,4 @@
 
 https://ammarzia.github.io/crypto-compare/
 
-![Alt Text](https://i.imgur.com/PWCU6FT.gif)
+![Alt Text](https://i.imgur.com/vTQHZD9.png)
