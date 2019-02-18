@@ -48,7 +48,6 @@
         function getGlobalData(callback) {
             $.getJSON("https://api.coingecko.com/api/v3/global", function(json) {
 				totalMarketCap = fixed(parseFloat(json.data.total_market_cap.usd / 1000000000), 2);
-				console.log(totalMarketCap);
 				callback();
 			});
         }
