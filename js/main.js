@@ -46,21 +46,22 @@
         runInOrder();
 
         function getGlobalData(callback) {
-            $.getJSON('https://api.coinmarketcap.com/v1/global/', function(json) {
-                totalMarketCap = fixed(parseFloat(json.total_market_cap_usd / 1000000000), 2);
-                callback();
-            });
+            $.getJSON("https://api.coingecko.com/api/v3/global", function(json) {
+				totalMarketCap = fixed(parseFloat(json.data.total_market_cap.usd / 1000000000), 2);
+				console.log(totalMarketCap);
+				callback();
+			});
         }
 
         function getTickerData(callback) {
-        	$.getJSON('https://api.coinmarketcap.com/v1/ticker/?limit=250', function(json) {
+        	$.getJSON('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false', function(json) {
         	    for (var i = 0; i < coinList.length; i++) {
         	    $.each(json, function(index, value) {
         	    	if (value.id == coinList[i].id) {
-        	    		coinList[i].marketCap = parseInt(value.market_cap_usd);
-        	    		coinList[i].price = fixed(parseFloat(value.price_usd), 2);
-        	    		coinList[i].volume = parseInt(value['24h_volume_usd']);
-                        coinList[i].change = fixed(parseFloat(value.percent_change_24h), 2);
+        	    		coinList[i].marketCap = parseInt(value.market_cap);
+        	    		coinList[i].price = fixed(parseFloat(value.current_price), 2);
+        	    		coinList[i].volume = parseInt(value['total_volume']);
+                        coinList[i].change = fixed(parseFloat(value.price_change_percentage_24h), 2);
                         coinList[i].marketShare = fixed((coinList[i].marketCap * 0.0000001 / totalMarketCap), 2);
         	    	}
         	    });
