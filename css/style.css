@@ -128,11 +128,11 @@ div.table {
      height: 100%;
      left: 0;
      display: flex;
-     // This is IE 11+ overflow: auto;
+     /* This is IE 11+ overflow: auto; */
      padding: 1.5em;
      position: fixed;
      top: 0;
-     //transition: opacity .2s;
+     /* transition: opacity .2s; */
      width: 100%;
      z-index: -1;
 }
@@ -154,14 +154,14 @@ div.table {
      overflow-x: hidden;
      padding: 1.5em;
      position: relative;
-     //transform: scale(.8);
-     //transition: transform .3s;
+     /* transform: scale(.8);
+     transition: transform .3s; */
      width: 50%;
      text-align: center;
 }
  .modal-overlay[aria-hidden="false"] .modal-content {
-     //transform: scale(1);
-     //transform: rotate(7deg);
+     /* transform: scale(1);
+     transform: rotate(7deg); */
 }
 /* General Modal Content */
  #modal-title {
@@ -174,8 +174,8 @@ div.table {
      border: none;
      cursor: pointer;
      font-family: arial;
-     //font-size: 2em;
-     //font-weight: 800;
+     /* font-size: 2em;
+     font-weight: 800; */
      font-size:1.2em;
      line-height: 1;
      padding: 0;
